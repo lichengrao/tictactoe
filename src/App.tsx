@@ -1,7 +1,5 @@
-import React, { StrictMode } from 'react';
+import React from 'react';
 
-function App() {
-	return <div>APP</div>;
-}
+const App = () => <div>APP</div>;
 
 export default App;
