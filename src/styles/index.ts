@@ -7,7 +7,10 @@ export const Container = styled.div`
 	justify-content: center;
 `;
 
-export const Row = styled.div`display: flex;`;
+export const Board = styled.div`
+    display grid;
+    grid: repeat(3, 1fr) / repeat(3, 1fr);
+`;
 
 export const Block = styled.div`
 	align-items: center;
