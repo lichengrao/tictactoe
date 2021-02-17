@@ -1,3 +1,4 @@
+import { Button, H1 } from 'components';
 import React, { FC, Fragment } from 'react';
 import { useHistory } from 'react-router-dom';
 
@@ -9,8 +10,8 @@ const Home: FC = () => {
 	};
 	return (
 		<Fragment>
-			<h1>Home Page</h1>
-			<button onClick={handleClick}>Go to Game Room</button>
+			<H1>Home Page</H1>
+			<Button onClick={handleClick}>Go to Game Room</Button>
 		</Fragment>
 	);
 };

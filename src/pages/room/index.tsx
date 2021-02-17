@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import { useParams } from 'react-router-dom';
-import { Block, Container, Board, Button } from 'styles';
+import { Block, Board, Container } from './styles';
 import { useClearBoard, useMarkBoard, useRoom } from 'hooks';
+import { H1, Button } from 'components';
 
 const Room = () => {
 	const { roomId } = useParams<{ roomId: string }>();
@@ -9,8 +10,8 @@ const Room = () => {
 	const { isFetching, room } = useRoom();
 	const { isMarking, markBoard } = useMarkBoard();
 
-	if (isFetching) return <h1>Loading Room...</h1>;
-	if (!room) return <h1>Room Not Found</h1>;
+	if (isFetching) return <H1>Loading Room...</H1>;
+	if (!room) return <H1>Room Not Found</H1>;
 
 	const {
 		board,
@@ -46,7 +47,7 @@ const Room = () => {
 	});
 
 	return (
-		<Container>
+		<Container marking={isMarking}>
 			<h3>{message}</h3>
 			<Board>{blocks}</Board>
 			<Button disabled={isClearing} onClick={handleClear}>
