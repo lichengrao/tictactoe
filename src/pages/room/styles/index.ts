@@ -11,7 +11,6 @@ export const Container =
 		flex-direction: column;
 		justify-content: center;
 		user-select: none;
-		max-height: 350px;
 
 		& > div > div {
 			background-color: ${marking
