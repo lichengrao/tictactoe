@@ -1,9 +1,11 @@
-import { Button, H1 } from 'components';
+import { Button, H1, Logout } from 'components';
+import { useUser } from 'hooks';
 import React, { FC, Fragment } from 'react';
 import { useHistory } from 'react-router-dom';
 
 const Home: FC = () => {
 	const history = useHistory();
+	const user = useUser();
 
 	const goToGameRoom = () => {
 		history.push('/room/AAAA');
@@ -21,8 +23,14 @@ const Home: FC = () => {
 		<Fragment>
 			<H1>Home Page</H1>
 			<Button onClick={goToGameRoom}>Go to Game Room</Button>
-			<Button onClick={goToLogin}>Login</Button>
-			<Button onClick={goToSignup}>Signup</Button>
+			{user ? (
+				<Logout />
+			) : (
+				<Fragment>
+					<Button onClick={goToLogin}>Login</Button>
+					<Button onClick={goToSignup}>Signup</Button>
+				</Fragment>
+			)}
 		</Fragment>
 	);
 };

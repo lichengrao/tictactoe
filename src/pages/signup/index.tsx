@@ -4,9 +4,11 @@ import { Button, Error as ErrorComponent, Field, H1 } from 'components';
 import { useHistory } from 'react-router-dom';
 import { validateEmail } from 'helpers';
 import { db, auth } from 'services';
+import { useUser } from 'hooks';
 
 const SignupPage: FC = () => {
 	const history = useHistory();
+	const user = useUser();
 	const [ email, setEmail ] = useState('');
 	const [ emailErr, setEmailErr ] = useState<string | undefined>();
 	const [ password, setPassword ] = useState('');
@@ -17,6 +19,13 @@ const SignupPage: FC = () => {
 	>();
 	const [ firebaseErr, setFirebaseErr ] = useState<string | undefined>();
 	const [ isSigningUp, setIsSigningUp ] = useState(false);
+
+	useEffect(
+		() => {
+			if (user) history.push('/');
+		},
+		[ history, user ]
+	);
 
 	useEffect(
 		() => {

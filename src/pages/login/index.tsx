@@ -3,16 +3,25 @@ import React, { FC, Fragment, useEffect, useState } from 'react';
 import { Button, Error as ErrorComponent, Field, H1 } from 'components';
 import { useHistory } from 'react-router-dom';
 import { validateEmail } from 'helpers';
+import { useUser } from 'hooks';
 import { auth } from 'services';
 
 const LoginPage: FC = () => {
 	const history = useHistory();
+	const user = useUser();
 	const [ email, setEmail ] = useState('');
 	const [ emailErr, setEmailErr ] = useState<string | undefined>();
 	const [ password, setPassword ] = useState('');
 	const [ passwordErr, setPasswordErr ] = useState<string | undefined>();
 	const [ firebaseErr, setFirebaseErr ] = useState<string | undefined>();
 	const [ isLoggingIn, setIsLoggingIn ] = useState(false);
+
+	useEffect(
+		() => {
+			if (user) history.push('/');
+		},
+		[ history, user ]
+	);
 
 	useEffect(
 		() => {
