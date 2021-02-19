@@ -1,8 +1,9 @@
 import React, { FC, Fragment, useEffect, useState } from 'react';
 
-import { Button, Field, H1 } from 'components';
+import { Button, Error as ErrorComponent, Field, H1 } from 'components';
 import { useHistory } from 'react-router-dom';
 import { validateEmail } from 'helpers';
+import { auth } from 'services';
 
 const LoginPage: FC = () => {
 	const history = useHistory();
@@ -10,6 +11,8 @@ const LoginPage: FC = () => {
 	const [ emailErr, setEmailErr ] = useState<string | undefined>();
 	const [ password, setPassword ] = useState('');
 	const [ passwordErr, setPasswordErr ] = useState<string | undefined>();
+	const [ firebaseErr, setFirebaseErr ] = useState<string | undefined>();
+	const [ isLoggingIn, setIsLoggingIn ] = useState(false);
 
 	useEffect(
 		() => {
@@ -22,11 +25,20 @@ const LoginPage: FC = () => {
 		[ email, password ]
 	);
 
-	const handleLogin = () => {
+	const handleLogin = async () => {
 		if (email.length === 0) return setEmailErr('Email is required!');
 		if (!validateEmail(email))
 			return setEmailErr('Email address must be valid!');
 		if (password.length === 0) return setPasswordErr('Password is required!');
+
+		setIsLoggingIn(true);
+
+		try {
+			await auth.signInWithEmailAndPassword(email, password);
+		} catch (err) {
+			setFirebaseErr(err.message);
+			setIsLoggingIn(false);
+		}
 	};
 
 	const goToHome = () => {
@@ -58,7 +70,10 @@ const LoginPage: FC = () => {
 				type="password"
 				value={password}
 			/>
-			<Button onClick={handleLogin}>Login</Button>
+			{firebaseErr && <ErrorComponent>{firebaseErr}</ErrorComponent>}
+			<Button disabled={isLoggingIn} onClick={handleLogin}>
+				Login
+			</Button>
 			<Button onClick={goToSignup}>Signup Instead</Button>
 			<Button onClick={goToHome}>Back To Home</Button>
 		</Fragment>

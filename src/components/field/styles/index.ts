@@ -9,12 +9,6 @@ export const Container = styled.div`
 	width: 100%;
 `;
 
-export const Error = styled.p`
-	color: red;
-	margin-top: 5px;
-	padding-left: 15px;
-`;
-
 export const Input =
 	styled.input <
 	{ error: string | undefined } >
