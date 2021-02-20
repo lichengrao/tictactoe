@@ -1,7 +1,7 @@
 import styled, { css } from 'styled-components';
 
 export const Button = styled.button`
-	${({ theme }) => css`
+  ${({ theme }) => css`
 		align-items: center;
 		background-color: ${theme.colors.black};
 		border: 2px solid ${theme.colors.black};

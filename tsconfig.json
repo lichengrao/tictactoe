@@ -1,14 +1,8 @@
 {
   "compilerOptions": {
-    "plugins": [
-      {"name": "typescript-styled-plugin"}
-    ],
+    "plugins": [{ "name": "typescript-styled-plugin" }],
     "target": "es5",
-    "lib": [
-      "dom",
-      "dom.iterable",
-      "esnext"
-    ],
+    "lib": ["dom", "dom.iterable", "esnext"],
     "allowJs": false,
     "skipLibCheck": true,
     "esModuleInterop": true,
@@ -24,7 +18,5 @@
     "jsx": "react-jsx",
     "baseUrl": "src"
   },
-  "include": [
-    "src"
-  ]
+  "include": ["src"]
 }
