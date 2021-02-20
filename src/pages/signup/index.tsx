@@ -29,9 +29,6 @@ const SignupPage: FC = () => {
     setPasswordErr(undefined);
     setConfirmPasswordErr(undefined);
     setFirebaseErr(undefined);
-    return () => {
-      //cleanup;
-    };
   }, [email, password, confirmPassword]);
 
   const handleSignup = async () => {
@@ -64,9 +61,7 @@ const SignupPage: FC = () => {
         .collection('users')
         .doc(response.user.uid)
         .set({
-          displayName: response.user.email
-            ? response.user.email.split('@')[0]
-            : '<Unknown>',
+          displayName: response.user.email?.split('@')[0] ?? '<Unknown>',
         });
 
       history.push('/');

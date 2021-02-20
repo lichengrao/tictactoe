@@ -4,6 +4,7 @@ import { Container, Input, Label } from './styles';
 import { Error } from 'components';
 
 interface IProps {
+  disabled?: boolean;
   errMessage?: string;
   id: string;
   label: string;

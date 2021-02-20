@@ -15,6 +15,10 @@ const Home: FC = () => {
     history.push('/login');
   };
 
+  const goToProfile = () => {
+    history.push(`/u/${user!.id}`);
+  };
+
   const goToSignup = () => {
     history.push('/signup');
   };
@@ -24,7 +28,10 @@ const Home: FC = () => {
       <H1>Home Page</H1>
       <Button onClick={goToGameRoom}>Go to Game Room</Button>
       {user ? (
-        <Logout />
+        <Fragment>
+          <Button onClick={goToProfile}>Profile</Button>
+          <Logout />
+        </Fragment>
       ) : (
         <Fragment>
           <Button onClick={goToLogin}>Login</Button>

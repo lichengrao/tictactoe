@@ -23,9 +23,6 @@ const LoginPage: FC = () => {
   useEffect(() => {
     setEmailErr(undefined);
     setPasswordErr(undefined);
-    return () => {
-      //cleanup
-    };
   }, [email, password]);
 
   const handleLogin = async () => {

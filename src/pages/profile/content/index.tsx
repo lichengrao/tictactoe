@@ -26,13 +26,14 @@ const Content: FC<{ user: User }> = ({ user }) => {
   return (
     <Fragment>
       <Field
+        disabled={!isCurrentUser}
         id="display-name"
         label="Display Name"
         onChange={setDisplayName}
         placeHolder="Enter Display Name"
         value={displayName}
       />
-      <Button onClick={handleUpdate}>Update</Button>
+      {isCurrentUser && <Button onClick={handleUpdate}>Update</Button>}
     </Fragment>
   );
 };
