@@ -67,6 +67,7 @@ const SignupPage: FC = () => {
       history.push('/');
     } catch (err) {
       setFirebaseErr(err.message);
+    } finally {
       setIsSigningUp(false);
     }
   };

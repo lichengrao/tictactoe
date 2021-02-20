@@ -15,6 +15,7 @@ const Logout: FC = () => {
       await auth.signOut();
     } catch (err) {
       setFirebaseErr(err.message);
+    } finally {
       setIsLoggingOut(false);
     }
   }

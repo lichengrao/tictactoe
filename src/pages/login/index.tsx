@@ -37,6 +37,7 @@ const LoginPage: FC = () => {
       await auth.signInWithEmailAndPassword(email, password);
     } catch (err) {
       setFirebaseErr(err.message);
+    } finally {
       setIsLoggingIn(false);
     }
   };

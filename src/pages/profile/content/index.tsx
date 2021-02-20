@@ -1,12 +1,13 @@
 import React, { FC, Fragment, useEffect, useMemo, useState } from 'react';
 import { useParams } from 'react-router-dom';
 
-import { useCurrentUser } from 'hooks';
+import { useCurrentUser, useUpdateProfile } from 'hooks';
 import { Button, Field } from 'components';
 import { User } from 'typings';
 
 const Content: FC<{ user: User }> = ({ user }) => {
   const { userId } = useParams<{ userId: string }>();
+  const { isUpdatingProfile, updateProfile } = useUpdateProfile(userId);
   const currentUser = useCurrentUser();
   const [displayName, setDisplayName] = useState<string>(user.displayName);
 
@@ -20,7 +21,7 @@ const Content: FC<{ user: User }> = ({ user }) => {
   }, [user]);
 
   function handleUpdate() {
-    alert('clicked');
+    if (isCurrentUser) updateProfile(displayName);
   }
 
   return (
@@ -33,7 +34,11 @@ const Content: FC<{ user: User }> = ({ user }) => {
         placeHolder="Enter Display Name"
         value={displayName}
       />
-      {isCurrentUser && <Button onClick={handleUpdate}>Update</Button>}
+      {isCurrentUser && (
+        <Button disabled={isUpdatingProfile} onClick={handleUpdate}>
+          {isUpdatingProfile ? 'Updating' : 'Update'}
+        </Button>
+      )}
     </Fragment>
   );
 };

@@ -35,9 +35,9 @@ const useMarkBoard = (): Output => {
       });
     } catch (err) {
       console.error(err);
+    } finally {
+      setIsMarking(false);
     }
-
-    setIsMarking(false);
   }
 
   return { isMarking, markBoard };

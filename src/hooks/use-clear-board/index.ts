@@ -31,8 +31,9 @@ const useClearBoard = (): Output => {
         });
     } catch (err) {
       console.error(err);
+    } finally {
+      setIsClearing(false);
     }
-    setIsClearing(false);
   }
   return { isClearing, clearBoard };
 };
