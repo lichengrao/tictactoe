@@ -1,14 +1,14 @@
 import { Button, H1, Logout } from 'components';
-import { useUser } from 'hooks';
+import { useCurrentUser } from 'hooks';
 import React, { FC, Fragment } from 'react';
 import { useHistory } from 'react-router-dom';
 
 const Home: FC = () => {
 	const history = useHistory();
-	const user = useUser();
+	const user = useCurrentUser();
 
 	const goToGameRoom = () => {
-		history.push('/room/AAAA');
+		history.push('/r/AAAA');
 	};
 
 	const goToLogin = () => {

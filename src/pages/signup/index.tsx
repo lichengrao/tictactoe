@@ -4,11 +4,11 @@ import { Button, Error as ErrorComponent, Field, H1 } from 'components';
 import { useHistory } from 'react-router-dom';
 import { validateEmail } from 'helpers';
 import { db, auth } from 'services';
-import { useUser } from 'hooks';
+import { useCurrentUser } from 'hooks';
 
 const SignupPage: FC = () => {
 	const history = useHistory();
-	const user = useUser();
+	const user = useCurrentUser();
 	const [ email, setEmail ] = useState('');
 	const [ emailErr, setEmailErr ] = useState<string | undefined>();
 	const [ password, setPassword ] = useState('');
@@ -66,9 +66,11 @@ const SignupPage: FC = () => {
 
 			if (!response.user) throw new Error('Something went wrong!');
 
-			// await db.collection('users').doc(response.user.uid).set({
-			//     displayName: response.user.email?.split('@')[0] ?? '<UNKNOWN>',
-			// })
+			await db.collection('users').doc(response.user.uid).set({
+				displayName: response.user.email
+					? response.user.email.split('@')[0]
+					: '<Unknown>'
+			});
 
 			history.push('/');
 		} catch (err) {

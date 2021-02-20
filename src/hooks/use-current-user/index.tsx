@@ -4,7 +4,7 @@ import { auth } from 'services';
 
 const UserContext = createContext<any>(null);
 
-export const UserProvider: FC = ({ children }) => {
+export const CurrentUserProvider: FC = ({ children }) => {
 	const [ user, setUser ] = useState<any>(null);
 
 	auth.onAuthStateChanged(setUser);
@@ -12,4 +12,4 @@ export const UserProvider: FC = ({ children }) => {
 	return <UserContext.Provider value={user}>{children}</UserContext.Provider>;
 };
 
-export const useUser = () => useContext(UserContext);
+export const useCurrentUser = () => useContext(UserContext);

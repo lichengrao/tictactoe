@@ -13,3 +13,14 @@ export interface Room {
 	startingTurn: SYMBOL;
 	turnNumber: number;
 }
+
+export interface RoomItem {
+	id: string;
+	owner: string;
+}
+
+export interface User {
+	displayName: string;
+	id: string;
+	roomId?: string;
+}

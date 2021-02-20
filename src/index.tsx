@@ -7,18 +7,18 @@ import Routes from 'routes';
 import reportWebVitals from 'reportWebVitals';
 import Layout from 'layout';
 import { GlobalStyles, theme } from 'styles';
-import { UserProvider } from 'hooks';
+import { CurrentUserProvider } from 'hooks';
 
 ReactDOM.render(
 	<StrictMode>
 		<ThemeProvider theme={theme}>
 			<GlobalStyles />
 			<BrowserRouter>
-				<UserProvider>
+				<CurrentUserProvider>
 					<Layout>
 						<Routes />
 					</Layout>
-				</UserProvider>
+				</CurrentUserProvider>
 			</BrowserRouter>
 		</ThemeProvider>
 	</StrictMode>,
