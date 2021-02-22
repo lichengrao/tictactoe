@@ -25,7 +25,7 @@ const useCreateRoom = (): Output => {
     if (!user) return undefined;
 
     setIsCreatingRoom(true);
-    let roomId: string | undefined = await (
+    let roomId: string | undefined = (
       await db.collection('users').doc(user.id).get()
     ).data()?.roomId;
 
@@ -65,7 +65,6 @@ const useCreateRoom = (): Output => {
       console.error(err);
     } finally {
       setIsCreatingRoom(false);
-      console.log(`created room and roomId is ${roomId}`);
       return roomId;
     }
   };

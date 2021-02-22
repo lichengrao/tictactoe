@@ -18,7 +18,7 @@ const useUser = (userId: string): Output => {
       .doc(userId)
       .onSnapshot((doc) => {
         if (doc.exists) setUser({ ...doc.data(), id: userId } as User);
-        else console.log('User not foun');
+        else console.log('User not found');
         if (isFetching) setIsFetching(false);
       });
     return () => {

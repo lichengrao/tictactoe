@@ -5,7 +5,7 @@ import { useHistory } from 'react-router-dom';
 
 const Home: FC = () => {
   const history = useHistory();
-  const user = useCurrentUser();
+  const currentUser = useCurrentUser();
   const { createRoom, isCreatingRoom } = useCreateRoom();
 
   const goToGameRoom = () => {
@@ -17,7 +17,7 @@ const Home: FC = () => {
   };
 
   const goToProfile = () => {
-    history.push(`/u/${user!.id}`);
+    history.push(`/u/${currentUser!.id}`);
   };
 
   const goToSignup = () => {
@@ -33,7 +33,7 @@ const Home: FC = () => {
     <Fragment>
       <H1>Home Page</H1>
       <Button onClick={goToGameRoom}>Go to Game Room</Button>
-      {user ? (
+      {currentUser ? (
         <Fragment>
           <Button disabled={isCreatingRoom} onClick={handleCreateRoom}>
             Create Room
