@@ -1,4 +1,4 @@
-import React, { FC, Fragment, useEffect, useMemo, useState } from 'react';
+import React, { FC, useEffect, useMemo, useState } from 'react';
 import { useParams } from 'react-router-dom';
 
 import { useCurrentUser, useUpdateProfile } from 'hooks';
@@ -25,7 +25,7 @@ const Content: FC<{ user: User }> = ({ user }) => {
   }
 
   return (
-    <Fragment>
+    <>
       <Field
         disabled={!isCurrentUser}
         id="display-name"
@@ -39,7 +39,7 @@ const Content: FC<{ user: User }> = ({ user }) => {
           {isUpdatingProfile ? 'Updating' : 'Update'}
         </Button>
       )}
-    </Fragment>
+    </>
   );
 };
 

@@ -1,4 +1,4 @@
-import React, { FC, Fragment, useEffect, useState } from 'react';
+import React, { FC, useEffect, useState } from 'react';
 
 import { Button, Error as ErrorComponent, Field, H1 } from 'components';
 import { useHistory } from 'react-router-dom';
@@ -51,7 +51,7 @@ const LoginPage: FC = () => {
   };
 
   return (
-    <Fragment>
+    <>
       <H1>Login</H1>
       <Field
         errMessage={emailErr}
@@ -77,7 +77,7 @@ const LoginPage: FC = () => {
       </Button>
       <Button onClick={goToSignup}>Signup Instead</Button>
       <Button onClick={goToHome}>Back To Home</Button>
-    </Fragment>
+    </>
   );
 };
 

@@ -1,4 +1,4 @@
-import React, { FC, Fragment } from 'react';
+import React, { FC } from 'react';
 import { useHistory, useParams } from 'react-router-dom';
 
 import { Button, H1 } from 'components';
@@ -18,7 +18,7 @@ const ProfilePage: FC = () => {
   };
 
   return (
-    <Fragment>
+    <>
       <H1>Profile</H1>
       {user ? (
         <Content user={user} />
@@ -26,7 +26,7 @@ const ProfilePage: FC = () => {
         <p>Could not find user with ID: {userId}</p>
       )}
       <Button onClick={goBack}>Back</Button>
-    </Fragment>
+    </>
   );
 };
 

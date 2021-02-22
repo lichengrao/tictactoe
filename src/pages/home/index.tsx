@@ -1,6 +1,6 @@
 import { Button, H1, Logout } from 'components';
 import { useCreateRoom, useCurrentUser } from 'hooks';
-import React, { FC, Fragment } from 'react';
+import React, { FC } from 'react';
 import { useHistory } from 'react-router-dom';
 
 const Home: FC = () => {
@@ -8,8 +8,8 @@ const Home: FC = () => {
   const currentUser = useCurrentUser();
   const { createRoom, isCreatingRoom } = useCreateRoom();
 
-  const goToGameRoom = () => {
-    history.push('/r/AAAA');
+  const goToJoinRoom = () => {
+    history.push('/r');
   };
 
   const goToLogin = () => {
@@ -30,24 +30,24 @@ const Home: FC = () => {
   };
 
   return (
-    <Fragment>
+    <>
       <H1>Home Page</H1>
-      <Button onClick={goToGameRoom}>Go to Game Room</Button>
+      <Button onClick={goToJoinRoom}>Go to Game Room</Button>
       {currentUser ? (
-        <Fragment>
+        <>
           <Button disabled={isCreatingRoom} onClick={handleCreateRoom}>
             Create Room
           </Button>
           <Button onClick={goToProfile}>Profile</Button>
           <Logout />
-        </Fragment>
+        </>
       ) : (
-        <Fragment>
+        <>
           <Button onClick={goToLogin}>Login</Button>
           <Button onClick={goToSignup}>Signup</Button>
-        </Fragment>
+        </>
       )}
-    </Fragment>
+    </>
   );
 };
 

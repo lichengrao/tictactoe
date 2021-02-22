@@ -1,4 +1,4 @@
-import React, { FC, Fragment, useState } from 'react';
+import React, { FC, useState } from 'react';
 
 import { Button, Error } from 'components';
 import { auth } from 'services';
@@ -20,12 +20,12 @@ const Logout: FC = () => {
   }
 
   return (
-    <Fragment>
+    <>
       <Button disabled={isLoggingOut} onClick={handleClick}>
         Log Out
       </Button>
       {firebaseErr && <Error>{firebaseErr}</Error>}
-    </Fragment>
+    </>
   );
 };
 
