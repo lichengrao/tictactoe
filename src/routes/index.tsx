@@ -12,7 +12,7 @@ const Signup = lazy(() => import('pages/signup'));
 const Routes = () => (
   <Switch>
     <Suspense fallback={<H1>Loading Page...</H1>}>
-      <Route path="/r" component={Rooms} />
+      <Route exact path="/r" component={Rooms} />
       <Route path="/r/:roomId" component={Room} />
       <Route path="/u/:userId" component={Profile} />
       <Route path="/login" component={Login} />
