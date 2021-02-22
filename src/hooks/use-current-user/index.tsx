@@ -9,7 +9,7 @@ import React, {
 import { auth, db } from 'services';
 import { User } from 'typings';
 
-const UserContext = createContext<User | undefined>(undefined);
+const CurrentUserContext = createContext<User | undefined>(undefined);
 
 export const CurrentUserProvider: FC = ({ children }) => {
   const [user, setUser] = useState<User | undefined>(undefined);
@@ -27,7 +27,11 @@ export const CurrentUserProvider: FC = ({ children }) => {
     };
   }, []);
 
-  return <UserContext.Provider value={user}>{children}</UserContext.Provider>;
+  return (
+    <CurrentUserContext.Provider value={user}>
+      {children}
+    </CurrentUserContext.Provider>
+  );
 };
 
-export const useCurrentUser = () => useContext(UserContext);
+export const useCurrentUser = () => useContext(CurrentUserContext);

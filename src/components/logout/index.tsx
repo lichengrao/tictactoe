@@ -5,7 +5,7 @@ import { auth } from 'services';
 
 const Logout: FC = () => {
   const [isLoggingOut, setIsLoggingOut] = useState(false);
-  const [firebaseErr, setFirebaseErr] = useState<string | undefined>();
+  const [firebaseErr, setFirebaseErr] = useState<string | undefined>(undefined);
 
   async function handleClick() {
     setIsLoggingOut(true);
@@ -15,7 +15,6 @@ const Logout: FC = () => {
       await auth.signOut();
     } catch (err) {
       setFirebaseErr(err.message);
-    } finally {
       setIsLoggingOut(false);
     }
   }
