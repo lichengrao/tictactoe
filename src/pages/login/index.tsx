@@ -1,9 +1,9 @@
-import React, { FC, useEffect, useState } from 'react';
+import React, { FC, useCallback, useEffect, useState } from 'react';
+import { useHistory } from 'react-router-dom';
 
 import { Button, Error as ErrorComponent, Field, H1 } from 'components';
-import { useHistory } from 'react-router-dom';
 import { validateEmail } from 'helpers';
-import { useCurrentUser } from 'hooks';
+import { useCurrentUser, useSearchParams } from 'hooks';
 import { auth } from 'services';
 
 const LoginPage: FC = () => {
@@ -16,9 +16,17 @@ const LoginPage: FC = () => {
   const [firebaseErr, setFirebaseErr] = useState<string | undefined>();
   const [isLoggingIn, setIsLoggingIn] = useState(false);
 
+  const { redirect, player } = useSearchParams();
+
+  const performRedirect = useCallback(() => {
+    if (!redirect) return history.push('/');
+    if (!player) return history.push(`/${redirect}`);
+    return history.push(`/${redirect}?player=${player}`);
+  }, [history, player, redirect]);
+
   useEffect(() => {
     if (user) history.push('/');
-  }, [history, user]);
+  }, [performRedirect, user]);
 
   useEffect(() => {
     setEmailErr(undefined);
@@ -35,6 +43,7 @@ const LoginPage: FC = () => {
 
     try {
       await auth.signInWithEmailAndPassword(email, password);
+      performRedirect();
     } catch (err) {
       setFirebaseErr(err.message);
     } finally {

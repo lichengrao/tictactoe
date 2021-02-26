@@ -23,7 +23,7 @@ export const Container = styled.div<{ marking: boolean }>`
   `}
 `;
 
-export const Board = styled.div`
+export const BoardContainer = styled.div`
   display: grid;
   grid: repeat(3, 1fr) / repeat(3, 1fr);
   max-height: 350px;

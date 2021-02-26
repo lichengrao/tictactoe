@@ -18,7 +18,9 @@ export const Button = styled.button`
         min-height: 40px;
         opacity: 0.9;
         transition: ${theme.transition};
+        user-select: none;
         width: 100%;
+
 
         &:focus {
             border-color: ${theme.colors.blue};
